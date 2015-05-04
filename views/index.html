@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Raspberry Pi Interface</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/interface.css">
+      <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script><script src="/js/interface.js"></script>
+   </head>
+   <body>
+      <div class="container">
+         <h1>Raspberry Pi Interface</h1>
+         <div class="row voffset">
+            <div class="col-md-6">
+               <div>Cpu Temperature</div>
+            </div>
+            <div class="col-md-6"><button type="button" onclick="window.open('http://82.246.251.82:8001/', '_blank');" class="btn btn-block btn-lg btn-primary">Track CPU temperature</button></div>
+         </div>
+         <div class="row voffset">
+            <div class="col-md-4">
+               <div>Electrical Plug D</div>
+            </div>
+            <div class="col-md-4"><button id="switch-on" class="btn btn-block btn-lg btn-primary">Switch On</button></div>
+            <div class="col-md-4"><button id="switch-off" class="btn btn-block btn-lg btn-danger">Switch Off</button></div>
+         </div>         
+         <div class="row voffset">
+            <div class="col-md-6">
+               <div>Camera</div>
+            </div>
+            <div class="col-md-6"><button id="picture" class="btn btn-block btn-lg btn-primary">Take Picture</button></div>
+         </div>
+         <div class="row voffset">
+            <div class="col-md-6"><img id="camera" width="640" height="360"></div>
+         </div>
+      </div>
+   </body>
+</html>

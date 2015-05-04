@@ -1,0 +1,29 @@
+{
+  "name": "piscuit-switch-electrical-plug",
+  "version": "1.0.0",
+  "description": "Nodejs app to switch on/off electrical plugs with a Raspberry pi 2.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilsonbuntu/piscuit-switch-electrical-plug.git"
+  },
+  "keywords": [
+    "piscuit",
+    "switch",
+    "electrical",
+    "plug"
+  ],
+  "author": "Wilson Buntu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wilsonbuntu/piscuit-switch-electrical-plug/issues"
+  },
+  "homepage": "https://github.com/wilsonbuntu/piscuit-switch-electrical-plug#readme"
+}
