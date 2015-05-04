@@ -17,7 +17,7 @@ app.get('/interface',function(req,res){
 app.get('/switch-on',function(req,res){
 	console.log('switch-on');
 
-	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 1', {cwd: cwd, encoding: 'utf8'}, function(err, stdout) {
+	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 1', {encoding: 'utf8'}, function(err, stdout) {
 	        if (err) throw err;
 
 	        console.log(stdout);
@@ -28,7 +28,7 @@ app.get('/switch-on',function(req,res){
 app.get('/switch-off',function(req,res){
 	console.log('switch-off');
 
-	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 0', {cwd: cwd, encoding: 'utf8'}, function(err, stdout) {
+	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 0', {encoding: 'utf8'}, function(err, stdout) {
 	        if (err) throw err;
 
 	        console.log(stdout);
