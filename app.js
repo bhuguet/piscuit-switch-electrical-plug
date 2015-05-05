@@ -1,13 +1,23 @@
+var basicAuth = require('basic-auth-connect');
 var express = require("express");
 var app     = express();
 
 var exec = require('child_process').exec;
+
+// Authenticator
+app.use(basicAuth('piUser', 'c3p0Fulguro.'));
 
 //Store all HTML files in view folder.
 app.use(express.static(__dirname + '/views'));
 // Set public folder
 app.use(express.static(__dirname + '/public'));
 
+// pi-aREST
+var piREST = require('pi-arest')(app);
+
+// Raspberry Pi name & ID
+piREST.set_id('c3p0');
+piREST.set_name('piscuit');
 
 app.get('/interface',function(req,res){
 	res.sendFile(__dirname + 	'/views/index.html');
