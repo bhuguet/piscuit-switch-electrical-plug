@@ -16,3 +16,12 @@ var switchIt = function(plugLetter, switchChoice) {
 }
 
 module.exports.switchIt = switchIt;
+
+module.exports = function(app) {
+
+	// Switch On/Off dynamic routes
+	app.get('/switch/:plugletter/:switchchoice', function(req,res){
+        	switchIt(req.params.plugletter, req.params.switchchoice);
+	});
+
+}

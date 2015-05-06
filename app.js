@@ -2,8 +2,6 @@ var basicAuth = require('basic-auth-connect');
 var express = require("express");
 var app     = express();
 
-var piPlug = require('./pi-plug');
-
 // View engine
 app.set('view engine', 'jade');
 
@@ -18,10 +16,8 @@ app.get('/interface', function(req, res){
   res.render('interface');
 });
 
-// Switch On/Off dynamic routes
-app.get('/switch/:plugletter/:switchchoice', function(req,res){
-	piPlug.switchIt(req.params.plugletter, req.params.switchchoice);
-});
+// pi-plug
+var piPlug = require('./pi-plug')(app);
 
 app.use(function(req, res, next){
    res.setHeader('Content-Type', 'text/plain');
