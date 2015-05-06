@@ -16,11 +16,11 @@ $(document).ready(function() {
   //setInterval(refreshSensors, 5000);
 
   $("#switch-on").click(function() {
-    $.get("/switch-on");
+    $.get("/switch/d/on");
   });
 
   $("#switch-off").click(function() {
-    $.get("/switch-off");
+    $.get("/switch/d/off");
   });
 
   $("#picture").click(function() {

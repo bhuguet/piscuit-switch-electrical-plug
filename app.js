@@ -3,6 +3,7 @@ var express = require("express");
 var app     = express();
 
 var exec = require('child_process').exec;
+var util = require('util');
 
 // View engine
 app.set('view engine', 'jade');
@@ -18,29 +19,22 @@ app.get('/interface', function(req, res){
   res.render('interface');
 });
 
-function switchPlug(switchChoice) {
+function switchPlug(plugLetter, switchChoice) {
 	console.log(switchChoice);
+	var plugNumber = 1;
+	if ('d' === plugLetter) plugNumber = 4;
+	var switchCommand = 0;
+	if ('on' === switchChoice) switchCommand = 1; 
 
-	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 1', {encoding: 'utf8'}, function(err, stdout) {
+	exec(util.format('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 %d %d', plugNumber, switchCommand), {encoding: 'utf8'}, function(err, stdout) {
 	        if (err) throw err;
 
 	        console.log(stdout);
 	});	
 }
 
-app.get('/switch-on', function(req,res){
-	switchPlug('switch-on');
-});
-
-app.get('/switch-off', function(req,res){
-	console.log('switch-off');
-
-	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 0', {encoding: 'utf8'}, function(err, stdout) {
-	        if (err) throw err;
-
-	        console.log(stdout);
-	});
-
+app.get('/switch/:plugletter/:switchchoice', function(req,res){
+	switchPlug(req.params.plugletter, req.params.switchchoice);
 });
 
 // app.get('/about',function(req,res){
