@@ -18,15 +18,18 @@ app.get('/interface', function(req, res){
   res.render('interface');
 });
 
-app.get('/switch-on', function(req,res){
-	console.log('switch-on');
+function switchPlug(switchChoice) {
+	console.log(switchChoice);
 
 	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 1', {encoding: 'utf8'}, function(err, stdout) {
 	        if (err) throw err;
 
 	        console.log(stdout);
-	});
+	});	
+}
 
+app.get('/switch-on', function(req,res){
+	switchPlug('switch-on');
 });
 
 app.get('/switch-off', function(req,res){
@@ -44,14 +47,10 @@ app.get('/switch-off', function(req,res){
 //   res.sendFile('/about.html');
 // });
 
-// app.get('/sitemap',function(req,res){
-//   res.sendFile('/sitemap.html');
-// });
-
-//app.use(function(req, res, next){
-//    res.setHeader('Content-Type', 'text/plain');
-//    res.send(404, 'Page introuvable !');
-//}); 
+app.use(function(req, res, next){
+   res.setHeader('Content-Type', 'text/plain');
+   res.send(404, '404 Page Not Found');
+}); 
 
 // pi-aREST
 var piREST = require('pi-arest')(app);
