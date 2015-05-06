@@ -10,10 +10,13 @@ app.set('view engine', 'jade');
 // Authenticator
 app.use(basicAuth('piUser', 'c3p0Fulguro.'));
 
-//Store all HTML files in view folder.
-app.use(express.static(__dirname + '/views'));
 // Set public folder
 app.use(express.static(__dirname + '/public'));
+
+// Interface routes
+app.get('/interface', function(req, res){
+  res.render('interface');
+});
 
 // pi-aREST
 var piREST = require('pi-arest')(app);
@@ -22,17 +25,12 @@ var piREST = require('pi-arest')(app);
 piREST.set_id('c3p0');
 piREST.set_name('piscuit');
 
-// Interface routes
-app.get('/interface', function(req, res){
-  res.render('interface');
-});
-
-
 // app.get('/interface',function(req,res){
 // 	res.sendFile(__dirname + 	'/views/index.html');
 //   	//It will find and locate index.html from View or Scripts
 // });
 
+/*
 app.get('/switch-on',function(req,res){
 	console.log('switch-on');
 
@@ -54,6 +52,7 @@ app.get('/switch-off',function(req,res){
 	});
 
 });
+*/
 
 // app.get('/about',function(req,res){
 //   res.sendFile('/about.html');
@@ -63,10 +62,10 @@ app.get('/switch-off',function(req,res){
 //   res.sendFile('/sitemap.html');
 // });
 
-app.use(function(req, res, next){
-    res.setHeader('Content-Type', 'text/plain');
-    res.send(404, 'Page introuvable !');
-}); 
+//app.use(function(req, res, next){
+//    res.setHeader('Content-Type', 'text/plain');
+//    res.send(404, 'Page introuvable !');
+//}); 
 
 // Start server
 var server = app.listen(8000, function() {

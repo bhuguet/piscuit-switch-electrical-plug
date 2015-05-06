@@ -6,6 +6,7 @@
   "dependencies": {
     "basic-auth-connect": "^1.0.0",
     "express": "^4.12.3",
+    "jade": "^1.9.2",
     "pi-arest": "^0.2.0"
   },
   "devDependencies": {},
