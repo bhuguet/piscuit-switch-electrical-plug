@@ -68,6 +68,7 @@ app.use(function(req, res, next){
     res.send(404, 'Page introuvable !');
 }); 
 
-app.listen(8003);
-
-console.log("Running at Port 8003");
+// Start server
+var server = app.listen(8000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
