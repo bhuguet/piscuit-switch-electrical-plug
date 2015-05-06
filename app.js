@@ -18,20 +18,7 @@ app.get('/interface', function(req, res){
   res.render('interface');
 });
 
-// pi-aREST
-var piREST = require('pi-arest')(app);
-
-// Raspberry Pi name & ID
-piREST.set_id('c3p0');
-piREST.set_name('piscuit');
-
-// app.get('/interface',function(req,res){
-// 	res.sendFile(__dirname + 	'/views/index.html');
-//   	//It will find and locate index.html from View or Scripts
-// });
-
-/*
-app.get('/switch-on',function(req,res){
+app.get('/switch-on', function(req,res){
 	console.log('switch-on');
 
 	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 1', {encoding: 'utf8'}, function(err, stdout) {
@@ -42,7 +29,7 @@ app.get('/switch-on',function(req,res){
 
 });
 
-app.get('/switch-off',function(req,res){
+app.get('/switch-off', function(req,res){
 	console.log('switch-off');
 
 	exec('sudo /home/pi/tools_installed/433Utils/RPi_utils/send 11111 3 0', {encoding: 'utf8'}, function(err, stdout) {
@@ -52,7 +39,6 @@ app.get('/switch-off',function(req,res){
 	});
 
 });
-*/
 
 // app.get('/about',function(req,res){
 //   res.sendFile('/about.html');
@@ -66,6 +52,13 @@ app.get('/switch-off',function(req,res){
 //    res.setHeader('Content-Type', 'text/plain');
 //    res.send(404, 'Page introuvable !');
 //}); 
+
+// pi-aREST
+var piREST = require('pi-arest')(app);
+
+// Raspberry Pi name & ID
+piREST.set_id('c3p0');
+piREST.set_name('piscuit');
 
 // Start server
 var server = app.listen(8000, function() {
