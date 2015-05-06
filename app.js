@@ -4,6 +4,9 @@ var app     = express();
 
 var exec = require('child_process').exec;
 
+// View engine
+app.set('view engine', 'jade');
+
 // Authenticator
 app.use(basicAuth('piUser', 'c3p0Fulguro.'));
 
@@ -19,10 +22,16 @@ var piREST = require('pi-arest')(app);
 piREST.set_id('c3p0');
 piREST.set_name('piscuit');
 
-app.get('/interface',function(req,res){
-	res.sendFile(__dirname + 	'/views/index.html');
-  	//It will find and locate index.html from View or Scripts
+// Interface routes
+app.get('/interface', function(req, res){
+  res.render('interface');
 });
+
+
+// app.get('/interface',function(req,res){
+// 	res.sendFile(__dirname + 	'/views/index.html');
+//   	//It will find and locate index.html from View or Scripts
+// });
 
 app.get('/switch-on',function(req,res){
 	console.log('switch-on');
