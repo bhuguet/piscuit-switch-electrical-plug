@@ -10,7 +10,7 @@ var piplug = {
   plugDetails: {}
 }
 
-var SwitchAction = function(plugLetter, swichChoice) {  
+var SwitchAction = function(plugLetter, switchChoice) {  
   this.plugLetter = plugLetter;
   this.switchChoice = switchChoice;
 
@@ -53,7 +53,7 @@ module.exports = function(app) {
   });
 
   return {
-    set433UtilsPath: function(path) {
+    setPathTo433Utils: function(path) {
       piplug.pathTo433utils = path;
     },
     setPlugDetails: function(plugDetails) {
