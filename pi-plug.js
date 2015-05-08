@@ -10,6 +10,7 @@ var piplug = {
 }
 
 var Plug = function(letter, choice) {  
+  this.code = 11111;
   this.letter = letter;
   this.choice = choice;
 
