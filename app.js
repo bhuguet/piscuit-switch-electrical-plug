@@ -19,17 +19,17 @@ app.get('/interface', function(req, res){
 // pi-plug
 var piPlug = require('./pi-plug')(app);
 
-app.use(function(req, res, next){
-   res.setHeader('Content-Type', 'text/plain');
-   res.send(404, '404 Page Not Found');
-}); 
-
 // pi-aREST
 var piREST = require('pi-arest')(app);
 
 // Raspberry Pi name & ID
 piREST.set_id('c3p0');
 piREST.set_name('piscuit');
+
+app.use(function(req, res, next){
+   res.setHeader('Content-Type', 'text/plain');
+   res.status(404).send('404 Page Not Found');
+});
 
 // Start server
 var server = app.listen(8000, function() {
