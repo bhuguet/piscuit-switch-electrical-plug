@@ -6,11 +6,11 @@ var commandsIndexes = { "on" : 1, "off" : 0 };
 
 // Pi plug class
 var piplug = {
-  path433utils: '/'
+  path433utils: '/',
+  plugDetails: {}
 }
 
 var Plug = function(letter, choice) {  
-  this.code = 11111;
   this.letter = letter;
   this.choice = choice;
 
@@ -35,7 +35,7 @@ var switchIt = function(plugLetter, switchChoice) {
   console.log('path ' + piplug.path433utils);
   exec(
     util.format('sudo ' + piplug.path433utils + '/send %s %d %d', 
-      plug.code, 
+      piplug.plugDetails[plugLetter], 
       plug.getPlugNumber(), 
       plug.getSwitchCommand()), 
     {encoding: 'utf8'}, function(err, stdout) {
@@ -55,6 +55,9 @@ module.exports = function(app) {
   return {
     set_path433utils: function(path) {
       piplug.path433utils = path;
+    },
+    setPlugDetails: function(plugDetails) {
+      piplug.plugDetails = plugDetails;
     }
   };
 };
