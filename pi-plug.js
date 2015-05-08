@@ -1,21 +1,20 @@
 var exec = require('child_process').exec;
 var util = require('util');
 
+var plugIndexes = { "a" : 1, "b" : 2, "c" : 3, "d" : 4 };
+var commandsIndexes = { "on" : 1, "off" : 0 };
+
 var Plug = function(letter, choice) {
   this.code = '11111';
   this.letter = letter;
   this.choice = choice;
 
   this.getPlugNumber = function () {
-    var plugNumber = 1;
-    if ('d' === this.letter) plugNumber = 4;
-    return plugNumber;
+    return plugIndexes[this.letter];
   }
 
   this.getSwitchCommand = function () {
-    var switchCommand = 0;
-    if ('on' === this.choice) switchCommand = 1;
-    return switchCommand;
+    return commandsIndexes[this.choice];
   }
 
   this.toString = function () {
