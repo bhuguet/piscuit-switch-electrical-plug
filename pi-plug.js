@@ -1,43 +1,43 @@
 var exec = require('child_process').exec;
 var util = require('util');
 
-var plugIndexes = { "a" : 1, "b" : 2, "c" : 3, "d" : 4 };
-var commandsIndexes = { "on" : 1, "off" : 0 };
+var plugIndexMatching = { "a" : 1, "b" : 2, "c" : 3, "d" : 4 };
+var commandMatching = { "on" : 1, "off" : 0 };
 
 // Pi plug class
 var piplug = {
-  path433utils: '/',
+  pathTo433utils: '/',
   plugDetails: {}
 }
 
-var Plug = function(letter, choice) {  
-  this.letter = letter;
-  this.choice = choice;
+var SwitchAction = function(plugLetter, swichChoice) {  
+  this.plugLetter = plugLetter;
+  this.switchChoice = switchChoice;
 
   this.getPlugNumber = function () {
-    return plugIndexes[this.letter];
+    return plugIndexMatching[this.plugLetter];
   }
 
   this.getSwitchCommand = function () {
-    return commandsIndexes[this.choice];
+    return commandMatching[this.switchChoice];
   }
 
   this.toString = function () {
-    return util.format('Plug %s, switch it %s', this.letter, this.choice);
+    return util.format('Plug %s, switch it %s', this.plugLetter, this.switchChoice);
   }
 
 };
 
 var switchIt = function(plugLetter, switchChoice) {
-  var plug = new Plug(plugLetter, switchChoice);
-  console.log(plug.toString());
- 
-  console.log('path ' + piplug.path433utils);
+  var switchAction = new SwitchAction(plugLetter, switchChoice);
+  console.log(switchAction.toString()); 
+  console.log('path ' + piplug.pathTo433utils);
+  
   exec(
-    util.format('sudo ' + piplug.path433utils + '/send %s %d %d', 
+    util.format('sudo ' + piplug.pathTo433utils + '/send %s %d %d', 
       piplug.plugDetails[plugLetter], 
-      plug.getPlugNumber(), 
-      plug.getSwitchCommand()), 
+      switchAction.getPlugNumber(), 
+      switchAction.getSwitchCommand()), 
     {encoding: 'utf8'}, function(err, stdout) {
       if (err) throw err;
       console.log(stdout);
@@ -53,8 +53,8 @@ module.exports = function(app) {
   });
 
   return {
-    set_path433utils: function(path) {
-      piplug.path433utils = path;
+    set433UtilsPath: function(path) {
+      piplug.pathTo433utils = path;
     },
     setPlugDetails: function(plugDetails) {
       piplug.plugDetails = plugDetails;
