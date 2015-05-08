@@ -5,8 +5,8 @@ var plugIndexes = { "a" : 1, "b" : 2, "c" : 3, "d" : 4 };
 var commandsIndexes = { "on" : 1, "off" : 0 };
 
 // Pi plug class
-var pi-plug = {
-  433UtilsPath: '/'
+var piplug = {
+  path433utils: '/'
 }
 
 var Plug = function(letter, choice) {  
@@ -28,12 +28,13 @@ var Plug = function(letter, choice) {
 };
 
 var switchIt = function(plugLetter, switchChoice) {
-	var plug = new Plug(plugLetter, switchChoice);
-	console.log(plug.toString());
-
+  var plug = new Plug(plugLetter, switchChoice);
+  console.log(plug.toString());
+ 
+  console.log('path ' + piplug.path433utils);
   exec(
-    util.format('sudo ' + pi-plug.433UtilsPath + '/send %s %d %d', 
-      pi-plug.code, 
+    util.format('sudo ' + piplug.path433utils + '/send %s %d %d', 
+      plug.code, 
       plug.getPlugNumber(), 
       plug.getSwitchCommand()), 
     {encoding: 'utf8'}, function(err, stdout) {
@@ -45,8 +46,14 @@ var switchIt = function(plugLetter, switchChoice) {
 module.exports.switchIt = switchIt;
 
 module.exports = function(app) {
-	// Switch On/Off dynamic routes
-	app.get('/switch/:plugletter/:switchchoice', function(req,res){
-        	switchIt(req.params.plugletter, req.params.switchchoice);
-	});
-}
+  // Switch On/Off dynamic routes
+  app.get('/switch/:plugletter/:switchchoice', function(req,res){
+    switchIt(req.params.plugletter, req.params.switchchoice);
+  });
+
+  return {
+    set_path433utils: function(path) {
+      piplug.path433utils = path;
+    }
+  };
+};

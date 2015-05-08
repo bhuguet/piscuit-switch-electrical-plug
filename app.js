@@ -18,7 +18,8 @@ app.get('/interface', function(req, res){
 
 // pi-plug
 var piPlug = require('./pi-plug')(app);
-piPlug.set_433UtilsPath('/home/pi/tools_installed/433Utils/RPi_utils');
+piPlug.set_path433utils('/home/pi/tools_installed/433Utils/RPi_utils');
+piPlug.setPlugDetails({});
 
 // pi-aREST
 var piREST = require('pi-arest')(app);
